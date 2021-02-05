@@ -171,9 +171,9 @@
                     <div class="form-group col-md-2">
                     <div class=" input-group form-control shadow-sm ">
 
-                    <input class=" no-border" style="height: 25px; width: 50px;" type="tel" id="ccExpMonth" autocomplete="cc-exp-month" readonly>
+                    <input class="cc-exp-month no-border" style="height: 25px; width: 50px;" type="tel" id="cc-exp-month" autocomplete="cc-exp-month" readonly>
                     <span class="align-top pb-1" id="">/</span>
-                    <input class=" no-border " style="height: 25px; width: 50px;" type="tel" id="ccExpYear" autocomplete="cc-exp-year" readonly>
+                    <input class="cc-exp-year no-border " style="height: 25px; width: 50px;" type="tel" id="cc-exp-year" autocomplete="cc-exp-year" readonly>
                   </div>
                   </div>
                 
@@ -251,8 +251,8 @@
           card: {
             number: "#ccnumber",
             securityCode: "#cvv2",
-            expiryMonth: "#ccExpMonth",
-            expiryYear: "#ccExpYear", 
+            expiryMonth: "#cc-exp-month",
+            expiryYear: "#cc-exp-year", 
             nameOnCard: "#nameoncard"
 
           }
@@ -360,12 +360,28 @@ interaction: {
 var validity = {
   nameoncard: 0,
   ccnumber: 0,
-  ccExpMonth: 0,  
-  ccExpYear: 0,
+  "cc-exp-month": 0,  
+  "cc-exp-year": 0,
   cvv2: 0
 }
 
 var cvvEmptyState = true;
+
+PaymentSession.onEmptinessChange(["card.number"], function(selector, result) {
+    //handle change event
+    if (result.isEmpty) {
+        // field has empty value
+        document.getElementById(selector).classList.remove("is-invalid");
+        document.getElementById(selector).classList.remove("is-valid");
+        document.getElementById(selector).classList.remove("visa");
+        console.log("Element with selector " + selector + " has changed it's emptiness status to empty");
+
+    } else if (!result.isEmpty) {
+        // field has non-empty value
+        
+        console.log("Element with selector " + selector + " has changed it's emptiness status to non-empty");
+    }
+});
 
 PaymentSession.onEmptinessChange(["card.securityCode"], function(selector, result) {
     //handle change event
@@ -408,12 +424,12 @@ console.log("here is the result: " + JSON.stringify(result));
             ccnumberDiv.classList.remove("valid");
             ccnumberDiv.classList.add(validityState);
                 break;
-                case "ccExpMonth":
+                case "cc-exp-month":
             document.getElementById(selector).classList.remove("is-invalid");
             document.getElementById(selector).classList.remove("is-valid");
             document.getElementById(selector).classList.add(validityState);
                 break;
-                case "ccExpYear":
+                case "cc-exp-year":
                 document.getElementById(selector).classList.remove("is-invalid");
             document.getElementById(selector).classList.remove("is-valid");
             document.getElementById(selector).classList.add(validityState);
