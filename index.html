@@ -368,12 +368,15 @@ var validity = {
 var cvvEmptyState = true;
 
 PaymentSession.onEmptinessChange(["card.number"], function(selector, result) {
+
+  var ccNumberValidDiv = document.getElementById("ccnumber-border");
+  var ccNumberTypeDiv = document.getElementById("card-type");
     //handle change event
     if (result.isEmpty) {
         // field has empty value
-        document.getElementById(selector).classList.remove("is-invalid");
-        document.getElementById(selector).classList.remove("is-valid");
-        document.getElementById(selector).classList.remove("visa");
+        ccNumberValidDiv.classList.remove("is-invalid");
+        ccNumberValidDiv.classList.remove("is-valid");
+        ccNumberTypeDiv.classList.remove("visa");
         console.log("Element with selector " + selector + " has changed it's emptiness status to empty");
 
     } else if (!result.isEmpty) {
