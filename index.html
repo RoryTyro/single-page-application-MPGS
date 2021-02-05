@@ -377,6 +377,7 @@ PaymentSession.onEmptinessChange(["card.number"], function(selector, result) {
         ccNumberValidDiv.classList.remove("is-invalid");
         ccNumberValidDiv.classList.remove("is-valid");
         ccNumberTypeDiv.classList.remove("visa");
+        ccNumberTypeDiv.classList.add("blank-card"); 
         console.log("Element with selector " + selector + " has changed it's emptiness status to empty");
 
     } else if (!result.isEmpty) {
