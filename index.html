@@ -415,9 +415,7 @@ console.log("here is the result: " + JSON.stringify(result));
 
   
     } 
-
-
-    switch (selector) {
+ switch (selector) {
             case "nameoncard":
             document.getElementById(selector).classList.remove("is-invalid");
             document.getElementById(selector).classList.remove("is-valid");
@@ -480,6 +478,7 @@ if (total == 5){
 
 PaymentSession.onCardTypeChange(function(selector, result, scopeId) {
   var cardTypeDiv = document.getElementById("card-type");
+  console.log("onCardTypeChange event fired: " + result);
     //handle change event
     if (result.status === 'SUPPORTED') {
       //$(ccnumber).switchClass( "invalid", "valid");
