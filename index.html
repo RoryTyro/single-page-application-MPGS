@@ -478,7 +478,7 @@ if (total == 5){
 
 PaymentSession.onCardTypeChange(function(selector, result, scopeId) {
   var cardTypeDiv = document.getElementById("card-type");
-  console.log("onCardTypeChange event fired: " + result);
+  console.log("onCardTypeChange event fired: " + JSON.stringify(result));
     //handle change event
     if (result.status === 'SUPPORTED') {
       //$(ccnumber).switchClass( "invalid", "valid");
